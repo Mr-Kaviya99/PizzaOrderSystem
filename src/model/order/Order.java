@@ -1,7 +1,9 @@
 package model.order;
+/**
+ * author k2460782
+ */
 
 import model.Pizza;
-import model.enums.OrderStatus;
 import model.promotion.PromotionStrategy;
 
 import java.time.LocalDateTime;
@@ -110,6 +112,7 @@ public class Order {
     public double applyPromotion() {
         return promotionStrategy.applyDiscount();
     }
+
     public void setQuantity(int quantity) {
         this.quantity = quantity;
     }

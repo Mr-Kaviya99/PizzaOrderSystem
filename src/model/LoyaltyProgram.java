@@ -1,5 +1,8 @@
 package model;
 
+/**
+ * author k2460782
+ */
 public class LoyaltyProgram {
     private int points;
 

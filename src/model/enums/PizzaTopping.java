@@ -1,5 +1,8 @@
 package model.enums;
 
+/**
+ * author k2460782
+ */
 public enum PizzaTopping {
     OLIVES, MUSHROOMS, PEPPERS, ONIONS, TOMATOES,
     PEPPERONI, SAUSAGE, BACON, HAM, CHICKEN,

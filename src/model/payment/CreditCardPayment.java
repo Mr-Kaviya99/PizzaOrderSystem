@@ -1,4 +1,7 @@
 package model.payment;
+/**
+ * author k2460782
+ */
 
 import model.Customer;
 

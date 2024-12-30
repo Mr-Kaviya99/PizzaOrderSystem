@@ -1,4 +1,7 @@
 package model;
+/**
+ * author k2460782
+ */
 
 import java.util.ArrayList;
 import java.util.List;

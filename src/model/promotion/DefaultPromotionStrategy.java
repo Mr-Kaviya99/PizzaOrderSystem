@@ -1,11 +1,14 @@
 package model.promotion;
+/**
+ * author k2460782
+ */
 
 import java.util.Arrays;
 import java.util.List;
 
 public class DefaultPromotionStrategy implements PromotionStrategy {
     @Override
-    public double  applyDiscount() {
+    public double applyDiscount() {
         return 0;
     }
 

@@ -1,4 +1,7 @@
 package model;
+/**
+ * author k2460782
+ */
 
 import model.payment.CreditCardPayment;
 import model.payment.PaymentStrategy;
