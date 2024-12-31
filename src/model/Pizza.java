@@ -16,8 +16,6 @@ public class Pizza {
     private String sauce;
     private List<PizzaTopping> toppings;
     private String cheese;
-
-    // Add price field
     private double price;
 
     private Pizza(PizzaBuilder builder) {
@@ -29,7 +27,6 @@ public class Pizza {
         this.price = calculatePrice(); // Set price upon creation
     }
 
-    // Method to calculate price
     private double calculatePrice() {
         double basePrice = 800;
         switch (this.size) {
@@ -44,19 +41,16 @@ public class Pizza {
                 break;
         }
 
-        // Add price for crust type
         if (this.crust.equals("Thick Crust")) {
-            basePrice += 100; // Extra for thick crust
+            basePrice += 100;
         } else if (this.crust.equals("Stuffed Crust")) {
-            basePrice += 150; // Extra for stuffed crust
+            basePrice += 150;
         }
 
-        // Add price for each topping (e.g., LKR 50 per topping)
         double toppingPrice = this.toppings.size() * 50;
         return basePrice + toppingPrice;
     }
 
-    // Getter for price
     public double getPrice() {
         return this.price;
     }
@@ -101,7 +95,6 @@ public class Pizza {
         this.size = size;
     }
 
-    // Builder Pattern (PizzaBuilder)
     public static class PizzaBuilder {
         private PizzaSize size;
         private String crust;
@@ -109,43 +102,36 @@ public class Pizza {
         private List<PizzaTopping> toppings = new ArrayList<>();
         private String cheese;
 
-        // Method to set the size
         public PizzaBuilder setSize(PizzaSize size) {
             this.size = size;
             return this;
         }
 
-        // Method to set the crust
         public PizzaBuilder setCrust(String crust) {
             this.crust = crust;
             return this;
         }
 
-        // Method to set the sauce
         public PizzaBuilder setSauce(String sauce) {
             this.sauce = sauce;
             return this;
         }
 
-        // Method to add a single topping
         public PizzaBuilder addTopping(PizzaTopping topping) {
             this.toppings.add(topping);
             return this;
         }
 
-        // Method to add multiple toppings at once
         public PizzaBuilder addToppings(List<PizzaTopping> toppings) {
             this.toppings.addAll(toppings);
             return this;
         }
 
-        // Method to set the cheese type
         public PizzaBuilder setCheese(String cheese) {
             this.cheese = cheese;
             return this;
         }
 
-        // Build and return a Pizza object
         public Pizza build() {
             return new Pizza(this);
         }

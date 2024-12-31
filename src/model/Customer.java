@@ -17,7 +17,7 @@ public class Customer {
         this.name = name;
         this.phoneNumber = phoneNumber;
         this.email = email;
-        this.loyaltyPoints = 0; // New customers start with zero points
+        this.loyaltyPoints = 0;
     }
 
     public String getName() {
@@ -45,14 +45,12 @@ public class Customer {
     }
 
     public boolean makePayment(double amount) {
-        // Apply any discounts before processing payment
         double discount = 0;
         if (this.paymentStrategy instanceof CreditCardPayment) {
-            discount = 10; // Example: 10% discount for credit card payments
+            discount = 10;
         }
         paymentStrategy.applyDiscount(this, discount);
 
-        // Process payment using the strategy
         return paymentStrategy.pay(amount - discount);
     }
 

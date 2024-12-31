@@ -18,7 +18,7 @@ public class PizzaCrustHandler implements CustomizationHandler {
         Pizza pizza = request.getPizza();
         if (pizza.getCrust() == null) {
             System.out.println("Applying default crust: Thin Crust");
-            pizza.setCrust("Thin Crust");  // Set default crust if not specified
+            pizza.setCrust("Thin Crust");
         }
         if (nextHandler != null) {
             nextHandler.handleCustomization(request);

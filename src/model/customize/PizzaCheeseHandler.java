@@ -18,7 +18,7 @@ public class PizzaCheeseHandler implements CustomizationHandler {
         Pizza pizza = request.getPizza();
         if (pizza.getCheese() == null) {
             System.out.println("Applying default cheese: Mozzarella");
-            pizza.setCheese("Mozzarella");  // Set default cheese if not specified
+            pizza.setCheese("Mozzarella");
         }
         if (nextHandler != null) {
             nextHandler.handleCustomization(request);

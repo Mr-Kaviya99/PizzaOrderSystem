@@ -22,8 +22,6 @@ public class CreditCardPayment implements PaymentStrategy {
 
     @Override
     public void applyDiscount(Customer customer, double discount) {
-        // Apply any promotion or discount logic for Credit Card payments
         System.out.println("Applying discount of " + discount + " on Credit Card payment.");
-        // Discount logic
     }
 }

@@ -30,14 +30,8 @@ import java.util.*;
 public class Main {
 
     static Scanner scanner = new Scanner(System.in);
-    private final PizzaCustomizationService pizzaCustomizationService = new PizzaCustomizationServiceImpl();
-    private final OrderService orderService = new OrderServiceImpl();
     private static final CustomerService customerService = new CustomerServiceImpl();
     private static List<Order> orders = new ArrayList<>();
-    private static Map<Integer, Double> customerPoints = new HashMap<>();
-    private static final PromotionContext promotionContext = new PromotionContext();
-
-    private static final PizzaTopping[] AVAILABLE_TOPPINGS = PizzaTopping.values();
 
     public static void main(String[] args) {
         System.out.println("***************************************");
@@ -99,7 +93,7 @@ public class Main {
         }
 
         System.out.print("Enter your contact number : ");
-        String phoneNumber = scanner.nextLine();
+        String phoneNumber = scanner.next();
         Customer customer = getOrCreateCustomer(phoneNumber);
 
         double orderAmount = pizza.getPrice() * quantity;
@@ -190,7 +184,7 @@ public class Main {
             System.out.println((topping.ordinal() + 1) + ". " + topping);
         }
         System.out.print("Select toppings (comma separated, e.g., 1,3,5), or press Enter for None : ");
-        String toppingInput = scanner.nextLine();
+        String toppingInput = scanner.next();
 
         List<PizzaTopping> selectedToppings = new ArrayList<>();
         if (!toppingInput.isEmpty()) {
@@ -226,16 +220,16 @@ public class Main {
 
     private static String getDeliveryAddress() {
         System.out.print("Please enter your delivery address : ");
-        return scanner.nextLine();
+        return scanner.next();
     }
 
     private static Customer getOrCreateCustomer(String phoneNumber) {
         Customer customer = customerService.getCustomerByPhoneNumber(phoneNumber);
         if (customer == null) {
             System.out.print("\nNew customer detected.\nPlease provide your name : ");
-            String name = scanner.nextLine();
+            String name = scanner.next();
             System.out.print("Please provide your email : ");
-            String email = scanner.nextLine();
+            String email = scanner.next();
             customer = customerService.createCustomer(name, phoneNumber, email);
             System.out.println("Welcome, " + name + "! Your loyalty points have been initialized to 0.");
         } else {
@@ -305,12 +299,11 @@ public class Main {
         while (true) {
             try {
                 choice = scanner.nextInt();
-                scanner.nextLine(); // Consume newline
                 if (choice >= min && choice <= max) {
                     return choice;
                 }
             } catch (Exception e) {
-                scanner.nextLine(); // Clear invalid input
+                scanner.nextLine();
             }
             System.out.println(errorMessage);
         }
@@ -379,13 +372,10 @@ public class Main {
         System.out.println("\n************** View Order Status **************");
         System.out.print("Enter Order ID to check status : ");
         int orderId = scanner.nextInt();
-        scanner.nextLine(); // Consume newline
 
-        // Find the order by ID in the static orders list
         Order order = findOrderById(orderId);
 
         if (order != null) {
-            // Print detailed order information
             System.out.println("\nOrder Details:");
             System.out.println("Order ID : " + order.getId());
             System.out.println("Total Amount : " + order.getTotalAmount());
@@ -437,7 +427,6 @@ public class Main {
     private static void handleFeedback() {
         System.out.println("\n************** Provide Feedback **************");
 
-        // Filter completed orders
         List<Order> completedOrders = new ArrayList<>();
 
         for (Order order : orders) {
@@ -477,7 +466,7 @@ public class Main {
         int rating = getIntInput(1, 5, "Invalid rating. Please enter a value between 1 and 5.");
 
         System.out.print("Enter your comments: ");
-        String comments = scanner.nextLine();
+        String comments = scanner.next();
 
         Feedback feedback = new Feedback(
                 selectedOrder.getId(),

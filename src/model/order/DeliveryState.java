@@ -12,6 +12,6 @@ public class DeliveryState implements OrderState {
             e.printStackTrace();
         }
 
-        order.setState(new CompletedState()); // Order completed after delivery
+        order.setState(new CompletedState());
     }
 }

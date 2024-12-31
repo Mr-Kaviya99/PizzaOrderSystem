@@ -7,14 +7,13 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class Feedback {
-    private static int feedbackCounter = 1; // Auto-increment feedback ID
+    private static int feedbackCounter = 1;
     private int feedbackId;
     private int orderId;
-    private int rating; // Rating between 1 and 5
+    private int rating;
     private String comments;
-    private String timestamp; // For simplicity, use a string representation of the timestamp
+    private String timestamp;
 
-    // Constructor
     public Feedback(int orderId, int rating, String comments, String timestamp) {
         this.feedbackId = feedbackCounter++;
         this.orderId = orderId;
@@ -23,7 +22,6 @@ public class Feedback {
         this.timestamp = timestamp;
     }
 
-    // Getters
     public int getFeedbackId() {
         return feedbackId;
     }
@@ -44,17 +42,14 @@ public class Feedback {
         return timestamp;
     }
 
-    // Feedback Storage (In-Memory)
     public static class FeedbackManager {
         private static List<Feedback> feedbackList = new ArrayList<>();
 
-        // Add feedback
         public static void addFeedback(Feedback feedback) {
             feedbackList.add(feedback);
             System.out.println("Feedback for pizza added successfully!");
         }
 
-        // Get feedback by pizza ID
         public static List<Feedback> getFeedbackByPizzaId(int pizzaId) {
             List<Feedback> results = new ArrayList<>();
             for (Feedback feedback : feedbackList) {
@@ -65,7 +60,6 @@ public class Feedback {
             return results;
         }
 
-        // Calculate average rating for a pizza
         public static double calculateAverageRatingByPizza(int pizzaId) {
             int count = 0;
             double totalRating = 0.0;

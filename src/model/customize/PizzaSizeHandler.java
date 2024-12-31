@@ -19,7 +19,7 @@ public class PizzaSizeHandler implements CustomizationHandler {
         Pizza pizza = request.getPizza();
         if (pizza.getSize() == null) {
             System.out.println("Applying default pizza size: Medium");
-            pizza.setSize(PizzaSize.REGULAR);  // Set default size if not specified
+            pizza.setSize(PizzaSize.REGULAR);
         }
         if (nextHandler != null) {
             nextHandler.handleCustomization(request);

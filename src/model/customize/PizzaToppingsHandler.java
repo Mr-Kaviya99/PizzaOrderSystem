@@ -20,7 +20,7 @@ public class PizzaToppingsHandler implements CustomizationHandler {
         Pizza pizza = request.getPizza();
         if (pizza.getToppings() == null || pizza.getToppings().isEmpty()) {
             System.out.println("Applying default topping: None");
-            pizza.setToppings(new ArrayList<>());  // Set default toppings if not specified
+            pizza.setToppings(new ArrayList<>());
         }
         if (nextHandler != null) {
             nextHandler.handleCustomization(request);
