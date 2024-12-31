@@ -173,7 +173,7 @@ public class Main {
         for (int i = 0; i < options.length; i++) {
             System.out.println((i + 1) + ". " + options[i]);
         }
-        System.out.print("Selection : ");
+        System.out.print("Selection: ");
         int choice = getIntInput(1, options.length, "Invalid choice. Defaulting to None.");
         return choice == 1 ? null : options[choice - 1];
     }
@@ -183,8 +183,8 @@ public class Main {
         for (PizzaTopping topping : PizzaTopping.values()) {
             System.out.println((topping.ordinal() + 1) + ". " + topping);
         }
-        System.out.print("Select toppings (comma separated, e.g., 1,3,5), or press Enter for None : ");
-        String toppingInput = scanner.next();
+        System.out.print("Select toppings (comma separated, e.g., 1,3,5), or press Enter for None: ");
+        String toppingInput = scanner.nextLine(); // use nextLine to handle the full line input
 
         List<PizzaTopping> selectedToppings = new ArrayList<>();
         if (!toppingInput.isEmpty()) {
@@ -195,10 +195,10 @@ public class Main {
                     if (index >= 0 && index < PizzaTopping.values().length) {
                         selectedToppings.add(PizzaTopping.values()[index]);
                     } else {
-                        System.out.println("Invalid topping choice : " + (index + 1));
+                        System.out.println("Invalid topping choice: " + (index + 1));
                     }
                 } catch (NumberFormatException e) {
-                    System.out.println("Invalid input for toppings : " + choice);
+                    System.out.println("Invalid input for toppings: " + choice);
                 }
             }
         }
@@ -219,17 +219,19 @@ public class Main {
     }
 
     private static String getDeliveryAddress() {
-        System.out.print("Please enter your delivery address : ");
-        return scanner.next();
+        scanner.nextLine();
+        System.out.print("Please enter your delivery address: ");
+        return scanner.nextLine();
     }
 
     private static Customer getOrCreateCustomer(String phoneNumber) {
+        scanner.nextLine();
         Customer customer = customerService.getCustomerByPhoneNumber(phoneNumber);
         if (customer == null) {
-            System.out.print("\nNew customer detected.\nPlease provide your name : ");
-            String name = scanner.next();
-            System.out.print("Please provide your email : ");
-            String email = scanner.next();
+            System.out.print("\nNew customer detected.\nPlease provide your name: ");
+            String name = scanner.nextLine();
+            System.out.print("Please provide your email: ");
+            String email = scanner.nextLine();
             customer = customerService.createCustomer(name, phoneNumber, email);
             System.out.println("Welcome, " + name + "! Your loyalty points have been initialized to 0.");
         } else {
@@ -300,6 +302,7 @@ public class Main {
             try {
                 choice = scanner.nextInt();
                 if (choice >= min && choice <= max) {
+                    scanner.nextLine();
                     return choice;
                 }
             } catch (Exception e) {
